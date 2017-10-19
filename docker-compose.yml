@@ -4,6 +4,7 @@ services:
     image: mariadb
     container_name: tp-mariadb
     environment:
+      - MYSQL_ROOT_USER=root
       - MYSQL_ROOT_PASSWORD=root
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -11,11 +12,11 @@ services:
     ports: 
       - 8000:80
     links:
-      - mariaDb
+      - mariaDb:db
   wordpress:
     image: wordpress
     container_name: tp-wordpress
     ports:
       - 8001:80
     links:
-      - mariaDb
+      - mariaDb:db
