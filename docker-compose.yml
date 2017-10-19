@@ -1,0 +1,21 @@
+version: "3.1"
+services:
+  mariaDb:
+    image: mariadb
+    container_name: tp-mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: tp-phpmyadmin
+    ports: 
+      - 8000:80
+    links:
+      - mariaDb
+  wordpress:
+    image: wordpress
+    container_name: tp-wordpress
+    ports:
+      - 8001:80
+    links:
+      - mariaDb
